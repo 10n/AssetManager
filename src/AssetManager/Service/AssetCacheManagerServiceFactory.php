@@ -3,7 +3,7 @@
 namespace AssetManager\Service;
 
 use Interop\Container\ContainerInterface;
-use Laminas\ServiceManager\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 
 /**

@@ -57,10 +57,8 @@ class AssetManager implements
      *
      * @param ResolverInterface $resolver
      * @param array             $config
-     *
-     * @return AssetManager
      */
-    public function __construct($resolver, $config = array())
+    public function __construct($resolver, $config = [])
     {
         $this->setResolver($resolver);
         $this->setConfig($config);
@@ -79,7 +77,8 @@ class AssetManager implements
     /**
      * Check if the request resolves to an asset.
      *
-     * @param    RequestInterface $request
+     * @param RequestInterface $request
+     *
      * @return   boolean
      */
     public function resolvesToAsset(RequestInterface $request)
@@ -88,7 +87,7 @@ class AssetManager implements
             $this->asset = $this->resolve($request);
         }
 
-        return (bool)$this->asset;
+        return (bool) $this->asset;
     }
 
     /**
@@ -124,7 +123,8 @@ class AssetManager implements
     /**
      * Set the asset on the response, including headers and content.
      *
-     * @param    ResponseInterface $response
+     * @param ResponseInterface $response
+     *
      * @return   ResponseInterface
      * @throws   Exception\RuntimeException
      */
@@ -132,7 +132,7 @@ class AssetManager implements
     {
         if (!$this->asset instanceof AssetInterface) {
             throw new Exception\RuntimeException(
-                'Unable to set asset on response. Request has not been resolved to an asset.'
+                'Unable to set asset on response. Request has not been resolved to an asset.',
             );
         }
 
@@ -143,9 +143,9 @@ class AssetManager implements
 
         $this->getAssetFilterManager()->setFilters($this->path, $this->asset);
 
-        $this->asset    = $this->getAssetCacheManager()->setCache($this->path, $this->asset);
-        $mimeType       = $this->asset->mimetype;
-        $assetContents  = $this->asset->dump();
+        $this->asset   = $this->getAssetCacheManager()->setCache($this->path, $this->asset);
+        $mimeType      = $this->asset->mimetype;
+        $assetContents = $this->asset->dump();
 
         // @codeCoverageIgnoreStart
         if (function_exists('mb_strlen')) {
@@ -164,9 +164,9 @@ class AssetManager implements
         }
 
         $response->getHeaders()
-                 ->addHeaderLine('Content-Transfer-Encoding', 'binary')
-                 ->addHeaderLine('Content-Type', $mimeType)
-                 ->addHeaderLine('Content-Length', $contentLength);
+            ->addHeaderLine('Content-Transfer-Encoding', 'binary')
+            ->addHeaderLine('Content-Type', $mimeType)
+            ->addHeaderLine('Content-Length', $contentLength);
 
         $response->setContent($assetContents);
 

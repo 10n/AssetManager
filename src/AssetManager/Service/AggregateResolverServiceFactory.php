@@ -8,7 +8,7 @@ use AssetManager\Resolver\AggregateResolverAwareInterface;
 use AssetManager\Resolver\MimeResolverAwareInterface;
 use AssetManager\Resolver\ResolverInterface;
 use Interop\Container\ContainerInterface;
-use Laminas\ServiceManager\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 
 /**
@@ -19,14 +19,11 @@ use Laminas\ServiceManager\ServiceLocatorInterface;
  */
 class AggregateResolverServiceFactory implements FactoryInterface
 {
-    /**
-     * @inheritDoc
-     */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): AggregateResolver
     {
-        $config         = $container->get('config');
-        $config         = isset($config['asset_manager']) ? $config['asset_manager'] : array();
-        $resolver       = new AggregateResolver();
+        $config   = $container->get('config');
+        $config   = $config['asset_manager'] ?? [];
+        $resolver = new AggregateResolver();
 
         if (empty($config['resolvers'])) {
             return $resolver;
@@ -37,7 +34,7 @@ class AggregateResolverServiceFactory implements FactoryInterface
 
             if (!$resolverService instanceof ResolverInterface) {
                 throw new Exception\RuntimeException(
-                    'Service does not implement the required interface ResolverInterface.'
+                    'Service does not implement the required interface ResolverInterface.',
                 );
             }
 
@@ -51,7 +48,7 @@ class AggregateResolverServiceFactory implements FactoryInterface
 
             if ($resolverService instanceof AssetFilterManagerAwareInterface) {
                 $resolverService->setAssetFilterManager(
-                    $container->get(AssetFilterManager::class)
+                    $container->get(AssetFilterManager::class),
                 );
             }
 
@@ -61,12 +58,7 @@ class AggregateResolverServiceFactory implements FactoryInterface
         return $resolver;
     }
 
-    /**
-     * {@inheritDoc}
-     *
-     * @return AggregateResolver
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
+    public function createService(ServiceLocatorInterface $serviceLocator): AggregateResolver
     {
         return $this($serviceLocator, AggregateResolver::class);
     }

@@ -10,7 +10,7 @@ class ConfigProvider
          * @noinspection PhpFullyQualifiedNameUsageInspection
          */
         return [
-            'service_manager' => [
+            'dependencies'  => [
                 'factories'  => [
                     \AssetManager\Service\AssetManager::class              => \AssetManager\Service\AssetManagerServiceFactory::class,
                     \AssetManager\Service\AssetFilterManager::class        => \AssetManager\Service\AssetFilterManagerServiceFactory::class,
@@ -22,17 +22,10 @@ class ConfigProvider
                     \AssetManager\Resolver\CollectionResolver::class       => \AssetManager\Service\CollectionResolverServiceFactory::class,
                     \AssetManager\Resolver\ConcatResolver::class           => \AssetManager\Service\ConcatResolverServiceFactory::class,
                     \AssetManager\Resolver\AliasPathStackResolver::class   => \AssetManager\Service\AliasPathStackResolverServiceFactory::class,
-                ],
-                'invokables' => [
-                    \AssetManager\Service\MimeResolver::class => \AssetManager\Service\MimeResolver::class,
-                ],
-                'aliases'    => [
-                    //Alias left here for BC
-                    'mime_resolver'                          => \AssetManager\Service\MimeResolver::class,
-                    'AssetManager\Service\AggregateResolver' => \AssetManager\Resolver\AggregateResolver::class,
+                    \AssetManager\Service\MimeResolver::class              => \Laminas\ServiceManager\Factory\InvokableFactory::class,
                 ],
             ],
-            'asset_manager'   => [
+            'asset_manager' => [
                 'clear_output_buffer' => true,
                 'resolvers'           => [
                     \AssetManager\Resolver\MapResolver::class              => 3000,

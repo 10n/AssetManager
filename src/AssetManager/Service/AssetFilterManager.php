@@ -6,7 +6,6 @@ use Assetic\Contracts\Asset\AssetInterface;
 use Assetic\Contracts\Filter\FilterInterface;
 use AssetManager\Exception;
 use AssetManager\Resolver\MimeResolverAwareInterface;
-use Laminas\ServiceManager\ServiceLocatorInterface;
 use Psr\Container\ContainerInterface;
 
 class AssetFilterManager implements MimeResolverAwareInterface

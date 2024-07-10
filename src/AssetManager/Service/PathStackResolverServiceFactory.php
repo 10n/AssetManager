@@ -3,7 +3,7 @@
 namespace AssetManager\Service;
 
 use AssetManager\Resolver\PathStackResolver;
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 
 class PathStackResolverServiceFactory implements FactoryInterface

@@ -7,9 +7,8 @@ use AssetManager\Resolver\AggregateResolver;
 use AssetManager\Resolver\AggregateResolverAwareInterface;
 use AssetManager\Resolver\MimeResolverAwareInterface;
 use AssetManager\Resolver\ResolverInterface;
-use Interop\Container\ContainerInterface;
 use Laminas\ServiceManager\Factory\FactoryInterface;
-use Laminas\ServiceManager\ServiceLocatorInterface;
+use Psr\Container\ContainerInterface;
 
 /**
  * Factory class for AssetManagerService
@@ -56,10 +55,5 @@ class AggregateResolverServiceFactory implements FactoryInterface
         }
 
         return $resolver;
-    }
-
-    public function createService(ServiceLocatorInterface $serviceLocator): AggregateResolver
-    {
-        return $this($serviceLocator, AggregateResolver::class);
     }
 }

@@ -3,9 +3,8 @@
 namespace AssetManager\Service;
 
 use AssetManager\Resolver\AggregateResolver;
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use Laminas\ServiceManager\Factory\FactoryInterface;
-use Laminas\ServiceManager\ServiceLocatorInterface;
 
 /**
  * Factory class for AssetManagerService
@@ -38,10 +37,5 @@ class AssetManagerServiceFactory implements FactoryInterface
         );
 
         return $assetManager;
-    }
-
-    public function createService(ServiceLocatorInterface $serviceLocator): AssetManager
-    {
-        return $this($serviceLocator, AssetManager::class);
     }
 }

@@ -3,9 +3,8 @@
 namespace AssetManager\Service;
 
 use AssetManager\Resolver\MapResolver;
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use Laminas\ServiceManager\Factory\FactoryInterface;
-use Laminas\ServiceManager\ServiceLocatorInterface;
 
 class MapResolverServiceFactory implements FactoryInterface
 {
@@ -22,13 +21,5 @@ class MapResolverServiceFactory implements FactoryInterface
         }
 
         return new MapResolver($map);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator): MapResolver
-    {
-        return $this($serviceLocator, MapResolver::class);
     }
 }

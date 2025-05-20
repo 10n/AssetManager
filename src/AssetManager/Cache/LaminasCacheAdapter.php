@@ -10,24 +10,18 @@ use Laminas\Cache\Storage\StorageInterface;
  */
 class LaminasCacheAdapter implements CacheInterface
 {
-
-    /** @var StorageInterface */
-    protected $laminasCache;
-
     /**
-     * Constructor
-     *
      * @param StorageInterface $laminasCache Laminas Configured Cache Storage
      */
-    public function __construct(StorageInterface $laminasCache)
-    {
-        $this->laminasCache = $laminasCache;
+    public function __construct(
+        protected readonly StorageInterface $laminasCache,
+    ) {
     }
 
     /**
      * {@inheritDoc}
      */
-    public function has($key)
+    public function has($key): bool
     {
         return $this->laminasCache->hasItem($key);
     }
@@ -35,7 +29,7 @@ class LaminasCacheAdapter implements CacheInterface
     /**
      * {@inheritDoc}
      */
-    public function get($key)
+    public function get($key): mixed
     {
         return $this->laminasCache->getItem($key);
     }
@@ -43,7 +37,7 @@ class LaminasCacheAdapter implements CacheInterface
     /**
      * {@inheritDoc}
      */
-    public function set($key, $value)
+    public function set($key, $value): bool
     {
         return $this->laminasCache->setItem($key, $value);
     }
@@ -51,7 +45,7 @@ class LaminasCacheAdapter implements CacheInterface
     /**
      * {@inheritDoc}
      */
-    public function remove($key)
+    public function remove($key): bool
     {
         return $this->laminasCache->removeItem($key);
     }

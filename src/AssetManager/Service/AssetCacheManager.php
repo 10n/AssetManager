@@ -12,25 +12,10 @@ use Psr\Container\ContainerInterface;
  */
 class AssetCacheManager
 {
-    protected ContainerInterface $serviceLocator;
-
-    /**
-     * @var array Cache configuration.
-     */
-    protected $config = [];
-
-    /**
-     * Construct the AssetCacheManager
-     *
-     * @param ContainerInterface $serviceLocator
-     * @param array              $config
-     */
     public function __construct(
-        ContainerInterface $serviceLocator,
-        $config,
+        protected ContainerInterface $serviceLocator,
+        protected array $config = [],
     ) {
-        $this->serviceLocator = $serviceLocator;
-        $this->config         = $config;
     }
 
     /**
@@ -38,10 +23,8 @@ class AssetCacheManager
      *
      * @param string         $path  Path to asset
      * @param AssetInterface $asset Assetic Asset Interface
-     *
-     * @return  AssetCache|AssetInterface
      */
-    public function setCache($path, AssetInterface $asset)
+    public function setCache($path, AssetInterface $asset): AssetCache | AssetInterface
     {
         $provider = $this->getProvider($path);
 
@@ -62,7 +45,7 @@ class AssetCacheManager
      *
      * @param $path
      *
-     * @return array
+     * @return array|CacheInterface
      */
     private function getProvider($path)
     {

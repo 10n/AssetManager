@@ -205,8 +205,6 @@ class AssetManager implements
 
     /**
      * Set the AssetCacheManager.
-     *
-     * @param AssetCacheManager $cacheManager
      */
     public function setAssetCacheManager(AssetCacheManager $cacheManager): void
     {
@@ -215,10 +213,8 @@ class AssetManager implements
 
     /**
      * Get the AssetCacheManager
-     *
-     * @return AssetCacheManager
      */
-    public function getAssetCacheManager()
+    public function getAssetCacheManager(): AssetCacheManager
     {
         return $this->cacheManager;
     }

@@ -18,7 +18,7 @@ use Psr\Container\ContainerInterface;
  */
 class AggregateResolverServiceFactory implements FactoryInterface
 {
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): AggregateResolver
+    public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null): AggregateResolver
     {
         $config   = $container->get('config');
         $config   = $config['asset_manager'] ?? [];

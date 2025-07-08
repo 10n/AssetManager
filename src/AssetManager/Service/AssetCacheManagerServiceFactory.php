@@ -15,7 +15,7 @@ class AssetCacheManagerServiceFactory implements FactoryInterface
     /**
      * @inheritDoc
      */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): AssetCacheManager
+    public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null): AssetCacheManager
     {
         $config = [];
 

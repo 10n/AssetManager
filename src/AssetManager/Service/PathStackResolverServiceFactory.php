@@ -8,7 +8,7 @@ use Laminas\ServiceManager\Factory\FactoryInterface;
 
 class PathStackResolverServiceFactory implements FactoryInterface
 {
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): PathStackResolver
+    public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null): PathStackResolver
     {
         $config            = $container->get('config');
         $pathStackResolver = new PathStackResolver();

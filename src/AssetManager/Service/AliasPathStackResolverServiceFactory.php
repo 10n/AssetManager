@@ -14,7 +14,7 @@ class AliasPathStackResolverServiceFactory implements FactoryInterface
     public function __invoke(
         ContainerInterface $container,
         $requestedName,
-        array $options = null,
+        ?array $options = null,
     ): AliasPathStackResolver {
         $config = $container->get('config');
         $aliases = [];

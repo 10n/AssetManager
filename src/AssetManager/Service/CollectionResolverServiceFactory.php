@@ -8,7 +8,7 @@ use Psr\Container\ContainerInterface;
 
 class CollectionResolverServiceFactory implements FactoryInterface
 {
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): CollectionResolver
+    public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null): CollectionResolver
     {
         $config      = $container->get('config');
         $collections = [];

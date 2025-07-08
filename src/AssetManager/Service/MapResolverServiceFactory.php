@@ -11,7 +11,7 @@ class MapResolverServiceFactory implements FactoryInterface
     /**
      * @inheritDoc
      */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): MapResolver
+    public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null): MapResolver
     {
         $config = $container->get('config');
         $map    = [];

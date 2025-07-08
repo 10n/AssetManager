@@ -11,7 +11,7 @@ class PrioritizedPathsResolverServiceFactory implements FactoryInterface
     public function __invoke(
         ContainerInterface $container,
         $requestedName,
-        array $options = null,
+        ?array $options = null,
     ): PrioritizedPathsResolver {
         $config = $container->get('config');
         $prioritizedPathsResolver = new PrioritizedPathsResolver();

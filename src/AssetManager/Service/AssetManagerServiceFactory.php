@@ -14,7 +14,7 @@ use Laminas\ServiceManager\Factory\FactoryInterface;
  */
 class AssetManagerServiceFactory implements FactoryInterface
 {
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): AssetManager
+    public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null): AssetManager
     {
         $config             = $container->get('config');
         $assetManagerConfig = [];
